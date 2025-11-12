@@ -51,9 +51,9 @@ import { useRouter } from 'vue-router'
 
 const navItems = [
   { label: 'Dashboard', route: { name: 'Dashboard' } },
-  { label: 'Students', route: { name: 'StudentsPage' } },
-  { label: 'Attendance', route: { name: 'AttendancePage' } },
-  { label: 'Performance', route: { name: 'PerformancePage' } },
+  { label: 'Student Information', route: { name: 'StudentsPage' } },
+  { label: 'Attendance Records', route: { name: 'AttendancePage' } },
+  { label: 'Finance', route: {name: 'Finance'}},
   { label: 'Grades', route: { name: 'GradesPage' } },
   { label: 'Announcements', route: { name: 'AnnouncementsPage' } },
   { label: 'Assignments', route: { name: 'AssignmentsPage' } },

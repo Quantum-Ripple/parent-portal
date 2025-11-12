@@ -1,9 +1,6 @@
 <template>
   <div>
-    <EventList />
+   <h1>Announcement Page</h1>
   </div>
 </template>
 
-<script setup>
-import EventList from '../components/events/EventList.vue'
-</script>

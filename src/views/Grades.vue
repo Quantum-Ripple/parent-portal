@@ -1,15 +1,14 @@
 <template>
-  <div>
-    <ListGrades />
-  </div>
+    <div>
+        <GradesList />
+       
+      
+    </div>
+
 </template>
 
-<script>
-import ListGrades from '../components/grades/ListGrades.vue';
+<script setup>
+import GradesList from '../components/Grades/GradesList.vue';
 
-export default {
-  components: {
-    ListGrades
-  }
-};
+
 </script>

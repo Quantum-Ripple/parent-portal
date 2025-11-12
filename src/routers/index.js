@@ -4,20 +4,13 @@ import LoginPage from '../views/Login.vue'
 import DashboardLayout from '../layouts/DashboardLayout.vue'
 import Dashboard from '../views/Dashboard.vue'
 import StudentsPage from '../views/Students.vue'
+import AssignmentsPage from '../views/Assignments.vue'
 import AttendancePage from '../views/Attendance.vue'
+import Settings from '../views/Settings.vue'
 import GradesPage from '../views/Grades.vue'
 import AnnouncementsPage from '../views/Announcements.vue'
-import AssignmentsPage from '../views/Assignments.vue'
-import PerformancePage from '../views/Performance.vue'
-import Settings from '../views/Settings.vue'
-import StudentsDetail from '../components/StudentDetails.vue'
-import CreateExam from '../components/grades/CreateExam.vue'
-import GradeDetails from '../components/grades/GradeDetails.vue'
-import ListGrades from '../components/grades/ListGrades.vue'
-import AddGrades from '../components/grades/AddGrades.vue'
-import EventDetail from '../components/events/EventDetail.vue'
-import MarkAttendance from '../components/attendance/MarkAttendance.vue'
-import EditAttendance from '../components/attendance/EditAttendance.vue'
+import Finance from '../views/Finance.vue'
+
 
 const routes = [
   {
@@ -45,9 +38,9 @@ const routes = [
         component: StudentsPage,
       },
       {
-        path: 'student/:id',
-        name: 'StudentsDetail',
-        component: StudentsDetail,
+        path: 'finance',
+        name: 'Finance',
+        component: Finance
       },
       
       {
@@ -55,47 +48,14 @@ const routes = [
         name: 'AttendancePage',
         component: AttendancePage,
       },
-      {
-        path: 'mark/attendance',
-        name: 'MarkAttendance',
-        component: MarkAttendance
-      },
-      {
-        path: 'edit/attendance/:sessionId',
-        name: 'EditAttendance',
-        component: EditAttendance
-      },
+     
       
       {
         path: 'grades',
         name: 'GradesPage',
         component: GradesPage,
       },
-      {
-        path: 'list-grades',
-        name: 'ListGrades',
-        component: ListGrades
-      },
-      {
-        path: 'exams/create',
-        name: 'CreateExam',
-        component: CreateExam
-      },
-      {
-        path: 'grade-details',
-        name: 'GradeDetails',
-        component: GradeDetails
-      },
-      {
-        path: 'add/grades',
-        name: 'AddGrades',
-        component: AddGrades,
-      },
-      {
-        path: 'announcements/:id',
-        name: 'EventDetail',
-        component: EventDetail
-      },
+      
       {
         path: 'announcements',
         name: 'AnnouncementsPage',
@@ -106,11 +66,7 @@ const routes = [
         name: 'AssignmentsPage',
         component: AssignmentsPage,
       },
-       {
-        path: 'performance',
-        name: 'PerformancePage',
-        component: PerformancePage,
-      },
+    
       {
         path: 'settings',
         name: 'Settings',

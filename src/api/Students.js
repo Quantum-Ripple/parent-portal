@@ -1,22 +1,33 @@
 import api from './Axios'
 
-export default {
-  // List students
-  async list(params = {}) {
-    const res = await api.get('/students/', { params })
-    return res.data
-  },
-  async filter(class_level, stream) {
-    const res = await api.get('/students/filter/', {
-      params: { class_level, stream }
-    })
-    return res.data
-  },
+export const getStudent = async() => {
+  try {
+    const response = await api.get("/parent/student/");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching student:", error);
+    throw error;
+  }
 
-  // Get a single student
-  async get(id) {
-    const res = await api.get(`/students/${id}/`)
-    return res.data
-  },
 }
 
+export const getParent = async () => {
+  try {
+    const response = await api.get("/parent/profile/");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching parent:", error);
+    throw error;
+  }
+}
+
+
+export const getStudentGrades = async (studentId) => {
+  try {
+    const response = await api.get(`/parent/student/${studentId}/grades/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching student grades:", error);
+    throw error;
+  }
+};

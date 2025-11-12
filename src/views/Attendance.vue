@@ -1,10 +1,5 @@
 <template>
     <div>
-        <AttendanceView />
+        <h1>Attendance page</h1>
     </div>
 </template>
-
-<script setup>
-import AttendanceView from '../components/attendance/AttendanceView.vue';
-
-</script>
