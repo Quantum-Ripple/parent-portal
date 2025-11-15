@@ -1,14 +1,58 @@
+<!--
+/**
+ * @file SideBar.vue
+ * @description This component provides the main navigation sidebar for the application.
+ *              It supports both single-level and multi-level (collapsible) menu items,
+ *              dynamic icons, and a logout button.
+ *
+ * @overview
+ * The sidebar is a crucial part of the application's layout, offering a structured way
+ * to navigate between different views. It is designed to be configurable via props,
+ * allowing the parent component to define the navigation structure. It also handles
+ * its own internal state for managing collapsible submenus.
+ *
+ * @props
+ * - `title`: A `String` prop for the title displayed at the top of the sidebar. Defaults to 'Dashboard'.
+ * - `items`: An `Array` of navigation item objects. Each object must have a `label` and a `route`.
+ *   If an item has a `children` array (of similar objects), it will be rendered as a
+ *   collapsible submenu. An optional `icon` property can be provided for dynamic icon rendering.
+ *
+ * @emits
+ * - `logout`: Emitted when the user clicks the logout button at the bottom of the sidebar.
+ * - `navigate`: Emitted whenever a navigation link is clicked. This is primarily used to
+ *   trigger actions in the parent component, such as closing the mobile sidebar after navigation.
+ *
+ * @dependencies
+ * - Vue Composition API: `ref` for managing the state of the currently open submenu.
+ * - `vue-router`: Used for declarative navigation via the `<router-link>` component.
+ *
+ * @interactions
+ * - **Submenu Toggle:** Clicking on a menu item that has a `children` array toggles the
+ *   visibility of its submenu. The `toggleSubmenu` function manages which submenu is open.
+ * - **Navigation:** Clicking on a standard navigation link or a sub-item link navigates the
+ *   user to the specified route and emits the `navigate` event.
+ * - **Logout:** Clicking the logout button at the bottom of the sidebar emits the `logout` event,
+ *   allowing the parent component to handle the logout logic.
+ *
+ * @uiUx
+ * - Provides a clean, hierarchical navigation structure that is easy to understand.
+ * - Dynamically renders icons next to menu items for better visual guidance.
+ * - Includes a smooth slide animation for opening and closing submenus, enhancing the user experience.
+ * - The currently active route is highlighted to provide clear visual feedback on the user's location
+ *   within the application.
+ */
+-->
 <template>
   <aside class="w-64 h-screen bg-white border-r flex flex-col">
-    <!-- Header -->
+    
     <div class="h-16 flex items-center justify-center border-b">
       <span class="text-lg font-semibold">{{ title }}</span>
     </div>
 
-    <!-- Navigation -->
+    
     <nav class="flex-1 overflow-y-auto p-4 space-y-2">
       <div v-for="item in items" :key="item.label">
-        <!-- Parent Item -->
+        
         <div>
           <button
             v-if="item.children"
@@ -32,7 +76,7 @@
             </svg>
           </button>
 
-          <!-- Regular Link (no children) -->
+          
           <router-link
             v-else
             :to="item.route"
@@ -45,7 +89,7 @@
           </router-link>
         </div>
 
-        <!-- Sub-items -->
+        
         <transition name="slide">
           <div
             v-if="item.children && openSubmenu === item.label"
@@ -66,7 +110,7 @@
       </div>
     </nav>
 
-    <!-- Footer -->
+    
     <div class="border-t p-4">
       <button
         class="w-full flex items-center justify-center px-3 py-2 rounded-md hover:bg-gray-100"

@@ -1,4 +1,3 @@
-<!-- UnavailableIcon.vue -->
 <template>
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="10" stroke="#9ca3af" stroke-width="2"/>

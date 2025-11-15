@@ -1,4 +1,3 @@
-<!-- PresentIcon.vue -->
 <template>
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="10" stroke="#4ade80" stroke-width="2"/>

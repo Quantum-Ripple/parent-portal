@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-50">
-    <!-- Sidebar -->
+    
     <SimpleSideBar
       class="hidden md:flex"
       :items="navItems"
@@ -8,22 +8,22 @@
       @logout="onLogout"
     />
 
-    <!-- Main Area -->
+    
     <div class="flex-1 flex flex-col">
-      <!-- Top App Bar -->
+      
       <SimpleAppBar
         class="relative z-50"
         :title="PageTitle"
         @menu-toggle="toggleSidebar"
       />
 
-      <!-- Main Content -->
+      
       <main class="flex-1 overflow-y-auto p-4 md:p-6">
         <router-view />
       </main>
     </div>
 
-    <!-- Mobile Sidebar (toggleable) -->
+    
     <transition name="fade">
       <div
         v-if="mobileSidebarOpen"
@@ -53,7 +53,14 @@ const navItems = [
   { label: 'Dashboard', route: { name: 'Dashboard' } },
   { label: 'Student Information', route: { name: 'StudentsPage' } },
   { label: 'Attendance Records', route: { name: 'AttendancePage' } },
-  { label: 'Finance', route: {name: 'Finance'}},
+  { label: 'Finance' ,
+     children: [
+      { label: 'Fee Overview', route: { name: 'FeeSummary' } },
+      { label: 'Fee Statement', route: { name: 'FeeStatements' } },
+      { label: 'Fee Structure', route: { name: 'FeeStructure' } },
+      { label: 'Make Payment', route: { name: 'OnlinePayment' } },
+    ], 
+  },
   { label: 'Grades', route: { name: 'GradesPage' } },
   { label: 'Announcements', route: { name: 'AnnouncementsPage' } },
   { label: 'Assignments', route: { name: 'AssignmentsPage' } },

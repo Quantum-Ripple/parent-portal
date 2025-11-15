@@ -1,18 +1,77 @@
+<!--
+/**
+ * @file GradesList.vue
+ * @description This component allows parents to view a detailed list of their selected
+ *              student's grades across different exams, presented in collapsible sections,
+ *              along with a line chart visualizing grade trends.
+ *
+ * @overview
+ * The component first fetches a list of students associated with the parent. It then allows
+ * the user to select a student (or defaults to the first one if only one exists). Upon
+ * student selection, it fetches all grade data for that student, groups it by exam, and
+ * displays it in interactive, collapsible sections. A line chart is also generated to
+ * provide a visual representation of the student's performance over time.
+ *
+ * @dataDisplayed
+ * - A list of students for selection, allowing the parent to choose which student's grades to view.
+ * - For the selected student, grades are grouped by exam, with each entry showing:
+ *   - Subject name
+ *   - Score
+ *   - Grade letter
+ *   - Remarks
+ * - A line chart illustrating the student's performance trend across subjects and exams.
+ *
+ * @dataFetching
+ * - `getStudent()` from `../../api/Students.js`: Fetches the list of students associated
+ *   with the parent to populate the student selection dropdown.
+ * - `getStudentGrades(studentId)` from `../../api/Students.js`: Fetches all grade data
+ *   for the student specified by the `studentId` prop.
+ *
+ * @dependencies
+ * - Vue Composition API: `ref`, `reactive`, `onMounted` for reactive state management and
+ *   lifecycle hooks.
+ * - `vue-chartjs`: For rendering the line chart component.
+ * - `chart.js`: The underlying charting library required by `vue-chartjs`.
+ * - API Service: `../../api/Students.js`.
+ *
+ * @interactions
+ * - **Student Selection:** If the parent has multiple students, a dropdown allows the user
+ *   to select a specific student. If only one student is available, it is automatically selected.
+ * - **Initial Data Load:** On component mount, it fetches the list of students. If students
+ *   are found, it defaults to fetching the grades for the first student.
+ * - **Dynamic Fetching:** When a new student is selected from the dropdown (via `onStudentChange`),
+ *   the component re-fetches the grades for that student.
+ * - **Collapsible Exam Sections:** Each exam's grades are displayed within a collapsible section.
+ *   Clicking the header of an exam section toggles its visibility, allowing users to expand
+ *   or collapse the detailed grade list.
+ * - **Chart Generation:** The `prepareChart` function processes the fetched grades to generate
+ *   data suitable for the line chart, showing subject-wise performance across exams.
+ *
+ * @uiUx
+ * - Provides a clear and organized display of grades, grouped by exam, enhancing readability.
+ * - Uses collapsible sections to manage information density, allowing users to focus on specific
+ *   exam results without being overwhelmed.
+ * - Includes an interactive line chart for visual trend analysis of grades, helping parents
+ *   understand their child's academic progress over time.
+ * - Displays distinct loading and error states to provide clear feedback to the user during
+ *   the data fetching process.
+ */
+-->
 <template>
   <div class="p-6 max-w-4xl mx-auto">
     <h2 class="text-2xl font-bold mb-6 text-gray-800">Student Grades</h2>
 
-    <!-- Students selection / info -->
+    
     <div class="mb-4">
-      <!-- loading students -->
+      
       <div v-if="studentsLoading" class="text-gray-500">Loading students...</div>
 
-      <!-- no students -->
+      
       <div v-else-if="students.length === 0" class="text-yellow-600">
         No students found for this parent.
       </div>
 
-      <!-- more than one student -> show dropdown -->
+      
       <div v-else-if="students.length > 1" class="flex items-center gap-3">
         <label class="font-medium">Select student:</label>
         <select
@@ -31,27 +90,27 @@
         </select>
       </div>
 
-      <!-- exactly one student -> show name -->
+      
       <div v-else-if="students.length === 1" class="text-gray-700">
         <span class="font-medium">Student:</span>
         <span class="ml-2">{{ students[0].full_name }}</span>
       </div>
     </div>
 
-    <!-- Loading grades -->
+    
     <div v-if="loading" class="text-gray-500">Loading grades...</div>
 
-    <!-- Error -->
+    
     <div v-else-if="error" class="text-red-600">{{ error }}</div>
 
-    <!-- Grades by Exam -->
+    
     <div v-else>
       <div
         v-for="(grades, examName) in groupedGrades"
         :key="examName"
         class="mb-6 bg-white shadow rounded-lg overflow-hidden"
       >
-        <!-- Header -->
+        
         <button
           class="w-full flex justify-between items-center px-6 py-4 bg-gray-100 hover:bg-gray-200 transition"
           @click="toggleExam(examName)"
@@ -62,7 +121,7 @@
           </span>
         </button>
 
-        <!-- Table -->
+        
         <transition name="fade">
           <div v-if="expandedExam === examName" class="p-4">
             <table class="min-w-full border border-gray-200 rounded-lg text-sm">
@@ -91,7 +150,7 @@
         </transition>
       </div>
 
-      <!-- Line chart showing performance AFTER all tables -->
+      
       <div v-if="chartData.datasets.length > 0" class="mb-6">
         <Line :data="chartData" :options="chartOptions" />
       </div>
@@ -103,7 +162,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import { getStudentGrades, getStudent } from '../../api/Students'
 
-// Chart.js imports
+
 import {
   Chart as ChartJS,
   Title,
@@ -118,7 +177,7 @@ import { Line } from 'vue-chartjs'
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement)
 
-// Reactive state
+
 const groupedGrades = ref({})
 const loading = ref(false)
 const error = ref(null)
@@ -128,7 +187,7 @@ const students = ref([])
 const studentsLoading = ref(true)
 const selectedStudentId = ref('')
 
-// Chart reactive state
+
 const chartData = reactive({ labels: [], datasets: [] })
 const chartOptions = {
   responsive: true,
@@ -136,7 +195,7 @@ const chartOptions = {
   scales: { y: { min: 0, max: 100, title: { display: true, text: 'Score' } } },
 }
 
-// Fetch grades for a student
+
 const fetchGrades = async (studentId) => {
   if (!studentId) return
   loading.value = true
@@ -157,7 +216,7 @@ const fetchGrades = async (studentId) => {
   }
 }
 
-// Prepare chart from groupedGrades
+
 const prepareChart = () => {
   const examNames = Object.keys(groupedGrades.value)
   if (!examNames.length) {
@@ -183,17 +242,17 @@ const prepareChart = () => {
   }))
 }
 
-// Handle dropdown change
+
 const onStudentChange = async () => {
   await fetchGrades(selectedStudentId.value)
 }
 
-// Toggle exam expand/collapse
+
 const toggleExam = (examName) => {
   expandedExam.value = expandedExam.value === examName ? null : examName
 }
 
-// Initial load
+
 onMounted(async () => {
   studentsLoading.value = true
   error.value = null

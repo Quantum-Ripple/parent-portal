@@ -11,6 +11,13 @@ import GradesPage from '../views/Grades.vue'
 import AnnouncementsPage from '../views/Announcements.vue'
 import Finance from '../views/Finance.vue'
 
+import FeeStatements from '../components/Finance/FeeStatements.vue'
+import FeeStructure from '../components/Finance/FeeStructure.vue'
+import FeeSummary from '../components/Finance/FeeSummary.vue'
+import OnlinePayment from '../components/Finance/OnlinePayment.vue'
+
+
+
 
 const routes = [
   {
@@ -40,7 +47,29 @@ const routes = [
       {
         path: 'finance',
         name: 'Finance',
-        component: Finance
+        redirect: { name: 'FeeSummary' }, // default subpage
+        children: [
+          {
+            path: 'overview',
+            name: 'FeeSummary',
+            component: FeeSummary,
+          },
+          {
+            path: 'fee-structure',
+            name: 'FeeStructure',
+            component: FeeStructure,
+          },
+          {
+            path: 'fee-statement',
+            name: 'FeeStatements',
+            component: FeeStatements,
+          },
+          {
+            path: 'online-payment',
+            name: 'OnlinePayment',
+            component: OnlinePayment,
+          },
+        ],
       },
       
       {
