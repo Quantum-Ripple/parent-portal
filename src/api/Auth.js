@@ -34,4 +34,23 @@ export default {
   getUser() {
     return JSON.parse(localStorage.getItem('user'))
   },
+  async ChangePassword(oldPassword, newPassword) {
+  try {
+    const response = await api.put('password-change/', {
+      old_password: oldPassword,
+      new_password: newPassword
+    });
+
+    return response.data;
+
+  } catch (error) {
+    console.log("Caught Error:", error);
+
+    if (error.response) {
+      throw error.response.data;
+    }
+
+    throw error;
+  }
+}
 }
