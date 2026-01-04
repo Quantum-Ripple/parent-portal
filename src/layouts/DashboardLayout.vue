@@ -63,7 +63,6 @@ const navItems = [
   },
   { label: 'Grades', route: { name: 'GradesPage' } },
   { label: 'Announcements', route: { name: 'AnnouncementsPage' } },
-  { label: 'Assignments', route: { name: 'AssignmentsPage' } },
   { label: 'Settings', route: { name: 'Settings' } },
 ]
 
@@ -81,7 +80,7 @@ function getGreeting() {
 }
 const userData = JSON.parse(localStorage.getItem("user") || "{}")
 
-const PageTitle = ref(`${getGreeting()}, ${userData.full_name || ""}`)
+const PageTitle = ref(`${getGreeting()}, ${userData.first_name || ""}`)
 
 const sidebarTitle = ref(`${userData.school_name || ""}`)
 

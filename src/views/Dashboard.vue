@@ -148,11 +148,13 @@ const onStudentChange = () => {
   justify-content: flex-start; 
   gap: 1rem; 
   margin-bottom: 2rem;
+
 }
 
 .notifications {
-  position: relative; 
-  margin-left: auto;
+  position: relative;
+  margin-left: auto; 
+
 }
 
 .notification-btn {
@@ -161,6 +163,7 @@ const onStudentChange = () => {
   font-size: 1.5rem;
   cursor: pointer;
   position: relative; 
+
 }
 
 .badge {
@@ -177,6 +180,7 @@ const onStudentChange = () => {
 .student-selector {
   display: flex;
   align-items: center;
+ 
 }
 
 

@@ -1,7 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-100 flex flex-col">
 
-    <!-- TOP HORIZONTAL SETTINGS BAR -->
     <div class="bg-white shadow-md p-4">
       <h2 class="text-xl font-bold mb-4 text-gray-800">Settings</h2>
 
@@ -23,16 +22,6 @@
           Profile Settings
         </button>
 
-        <!-- More settings can be added here easily -->
-        <!--
-        <button @click="active='notifications'" :class="buttonClass('notifications')">
-          Notifications
-        </button>
-
-        <button @click="active='privacy'" :class="buttonClass('privacy')">
-          Privacy Settings
-        </button>
-        -->
 
       </div>
     </div>
