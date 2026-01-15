@@ -1,6 +1,6 @@
-import api from './Axios';
+import api from './axios';
 
-//announcements API calls
+
 export const fetchEvents = async () => {
   try {
     const response = await api.get("/announcements");
@@ -10,3 +10,11 @@ export const fetchEvents = async () => {
     throw error;
   }};
 
+export const fetchEventsById = async (id) => {
+  try {
+    const response = await api.get(`/announcements/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    throw error;
+  }};

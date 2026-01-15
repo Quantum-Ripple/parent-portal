@@ -48,7 +48,7 @@ const error = ref(null);
 async function fetchEvent() {
   loading.value = true;
   try {
-    const response = await eventApi.viewEvent(route.params.id);
+    const response = await eventApi.fetchEventsById(route.params.id);
     event.value = response;
   } catch (err) {
     console.error("Failed to load event:", err);

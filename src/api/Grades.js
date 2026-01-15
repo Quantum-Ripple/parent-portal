@@ -1,6 +1,6 @@
-import api from './Axios';
+import api from './axios';
 
-// ✅ Fetch exams
+
 export const getExams = async () => {
   try {
     const res = await api.get('/exams/');
@@ -11,7 +11,7 @@ export const getExams = async () => {
   }
 };
 
-// ✅ Create exam
+
 export const createExam = async(payload)=>{
   try{
     const response = await api.post('/exams/', payload);
@@ -23,7 +23,7 @@ export const createExam = async(payload)=>{
   }
 };
 
-// ✅ Get grades for an exam
+
 export const getExamGrades = async (examId) => {
   try {
     const res = await api.get(`/exams/${examId}/grades/`);
@@ -34,7 +34,7 @@ export const getExamGrades = async (examId) => {
   }
 };
 
-// ✅ Create a single grade
+
 export const createGrade = async (data) => {
   try {
     const res = await api.post('/grades/', data);
@@ -45,7 +45,6 @@ export const createGrade = async (data) => {
   }
 };
 
-// ✅ Update a single grade
 export const updateGrade = async (gradeId, data) => {
   try {
     const res = await api.patch(`/grades/${gradeId}/`, data);
@@ -56,7 +55,7 @@ export const updateGrade = async (gradeId, data) => {
   }
 };
 
-// ✅ Bulk upload grades
+
 export const bulkUploadGrades = async (examId, gradesArray) => {
   try {
     const payload = { grades: gradesArray };

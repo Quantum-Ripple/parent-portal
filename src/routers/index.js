@@ -15,6 +15,7 @@ import FeeStatements from '../components/Finance/FeeStatements.vue'
 import FeeStructure from '../components/Finance/FeeStructure.vue'
 import FeeSummary from '../components/Finance/FeeSummary.vue'
 import OnlinePayment from '../components/Finance/OnlinePayment.vue'
+import EventDetail from '../components/events/EventDetail.vue'
 
 
 
@@ -94,6 +95,11 @@ const routes = [
         path: 'assignments',
         name: 'AssignmentsPage',
         component: AssignmentsPage,
+      },
+      {
+        path: 'event-details/:id',
+        name: 'EventDetail',
+        component:EventDetail
       },
     
       {
