@@ -99,8 +99,8 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { getStudent } from "../../api/students";
-import { getStudentFinanceDetails, getFeeStructures } from "../../api/finance";
+import { getStudent } from "../../api/Students";
+import { getStudentFinanceDetails, getFeeStructures } from "../../api/Finance";
 
 
 const students = ref([]);

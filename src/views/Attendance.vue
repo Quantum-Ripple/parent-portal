@@ -129,7 +129,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getAttendance } from '../api/Attendance'
+import { getAttendance } from '../api/attendance'
 import { getStudent } from '../api/Students'
 
 

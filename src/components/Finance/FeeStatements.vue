@@ -125,7 +125,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { getStudentFinanceDetails, getPayments } from "../../api/finance";
+import { getStudentFinanceDetails, getPayments } from "../../api/Finance";
 import { getStudent } from "../../api/students";
 
 

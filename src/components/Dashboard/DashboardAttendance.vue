@@ -101,7 +101,7 @@
   
   <script setup>
   import { ref, reactive, computed, watch, toRefs } from 'vue';
-  import { getAttendance } from '../../api/Attendance';
+  import { getAttendance } from '../../api/attendance';
   
   
   import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
